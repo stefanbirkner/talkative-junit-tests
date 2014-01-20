@@ -29,17 +29,21 @@
     <maven>3.0.0</maven>
   </prerequisites>
   <properties>
+    <maven.compiler.testSource>1.6</maven.compiler.testSource>
+    <maven.compiler.testTarget>1.6</maven.compiler.testTarget>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <testSourceDirectory>${project.basedir}/src/test/java</testSourceDirectory>
   </properties>
   <build>
+    <testSourceDirectory>${testSourceDirectory}</testSourceDirectory>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.1</version>
         <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
+          <source>1.6</source>
+          <target>1.6</target>
         </configuration>
       </plugin>
       <plugin>
@@ -87,4 +91,17 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+  <profiles>
+    <profile>
+      <id>java8</id>
+      <activation>
+        <jdk>[1.8,)</jdk>
+      </activation>
+      <properties>
+        <maven.compiler.testSource>8</maven.compiler.testSource>
+        <maven.compiler.testTarget>8</maven.compiler.testTarget>
+        <testSourceDirectory>${project.basedir}/src/test/java8</testSourceDirectory>
+      </properties>
+    </profile>
+  </profiles>
 </project>
