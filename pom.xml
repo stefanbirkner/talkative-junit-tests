@@ -15,8 +15,13 @@
   <inceptionYear>2014</inceptionYear>
   <licenses>
     <license>
-      <name>Apache License, Version 2.0</name>
-      <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+      <name>Common Public License Version 1.0</name>
+      <url>http://www.opensource.org/licenses/cpl1.0</url>
+      <distribution>repo</distribution>
+    </license>
+    <license>
+      <name>Eclipse Public License 1.0</name>
+      <url>http://opensource.org/licenses/eclipse-1.0.txt</url>
       <distribution>repo</distribution>
     </license>
   </licenses>
