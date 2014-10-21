@@ -1,5 +1,11 @@
 package com.github.stefanbirkner.junit.talkative;
 
+import static java.util.stream.Collectors.toList;
+
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import org.junit.internal.AssumptionViolatedException;
 import org.junit.internal.runners.model.EachTestNotifier;
 import org.junit.runner.Description;
@@ -7,12 +13,9 @@ import org.junit.runner.notification.RunNotifier;
 import org.junit.runners.ParentRunner;
 import org.junit.runners.model.InitializationError;
 
-import java.util.Arrays;
-import java.util.List;
-
 /**
  * Implements the Talkative test case class model.
- *
+ * <p>
  * The tests are all {@link Test} objects. The tests have to be stored in a public class variable
  * that is an array of {@link Test}s.
  */
@@ -30,10 +33,9 @@ public class TalkativeTests extends ParentRunner<Test> {
     @Override
     protected List<Test> getChildren() {
         try {
-            return Arrays.asList((Test[]) getTestClass().getJavaClass().getField("tests").get(null));
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        } catch (NoSuchFieldException e) {
+            return ((Stream<Test>) getTestClass().getJavaClass().getField("tests").get(null))
+                    .collect(toList());
+        } catch (IllegalAccessException | NoSuchFieldException e) {
             throw new RuntimeException(e);
         }
     }
