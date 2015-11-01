@@ -24,7 +24,7 @@ public class Parameters implements Function<Object[], Test> {
         return MessageFormat.format(namePattern, parameters);
     }
 
-    public static interface ParameterizedStatement {
+    public interface ParameterizedStatement {
         /**
          * Run the statement, throwing a {@code java.lang.Throwable} if anything goes wrong.
          *
