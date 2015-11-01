@@ -1,10 +1,6 @@
 package com.github.stefanbirkner.junit.talkative;
 
-import static java.util.stream.Collectors.toList;
-
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.junit.internal.AssumptionViolatedException;
 import org.junit.internal.runners.model.EachTestNotifier;
@@ -33,8 +29,7 @@ public class TalkativeTests extends ParentRunner<Test> {
     @Override
     protected List<Test> getChildren() {
         try {
-            return ((Stream<Test>) getTestClass().getJavaClass().getField("tests").get(null))
-                .collect(toList());
+            return ((List<Test>) getTestClass().getJavaClass().getField("tests").get(null));
         } catch (IllegalAccessException | NoSuchFieldException e) {
             throw new RuntimeException(e);
         }
