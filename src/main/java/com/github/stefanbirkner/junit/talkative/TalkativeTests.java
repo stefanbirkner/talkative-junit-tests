@@ -34,7 +34,7 @@ public class TalkativeTests extends ParentRunner<Test> {
     protected List<Test> getChildren() {
         try {
             return ((Stream<Test>) getTestClass().getJavaClass().getField("tests").get(null))
-                    .collect(toList());
+                .collect(toList());
         } catch (IllegalAccessException | NoSuchFieldException e) {
             throw new RuntimeException(e);
         }
